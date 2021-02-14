@@ -13,10 +13,13 @@ class CreateJadwalsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('jadwal');
         Schema::create('jadwal', function (Blueprint $table) {
             $table->id();
             $table->string('hari', 24);
             $table->integer('mapel_id')->unsigned();
+            $table->timestamp('start_at')->nullable();
+            $table->timestamp('until_at')->nullable();
         });
     }
 

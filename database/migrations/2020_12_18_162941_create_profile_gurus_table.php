@@ -18,8 +18,9 @@ class CreateProfileGurusTable extends Migration
             $table->string('name', 64);
             $table->bigInteger('nip');
             $table->bigInteger('no_hp');
-            $table->string('avatar');
+            $table->string('avatar')->nullable();
             $table->string('gender', 16)->default('male');
+            $table->integer('jabatan_id')->unsigned();
         });
     }
 

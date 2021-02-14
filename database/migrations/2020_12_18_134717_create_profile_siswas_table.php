@@ -19,7 +19,7 @@ class CreateProfileSiswasTable extends Migration
             $table->string('name', 64);
             $table->bigInteger('nisn')->nullable();
             $table->tinyInteger('no_absen');
-            $table->integer('peran_id')->unsigned();
+            $table->integer('jabatan_id')->unsigned();
             $table->string('avatar');
             $table->string('gender', 16)->default('male');
             $table->bigInteger('no_hp')->nullable();

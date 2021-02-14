@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'api',
         'passwords' => 'users',
     ],
 
@@ -42,9 +42,14 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'jwt',
             'provider' => 'users',
             'hash' => false,
+        ],
+
+        'siswa' => [
+            'driver' => 'jwt',
+            'provider' => 'account',
         ],
     ],
 
@@ -71,6 +76,10 @@ return [
             'model' => App\User::class,
         ],
 
+        'account' => [
+            'driver' => 'eloquent',
+            'model' => App\Account::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
