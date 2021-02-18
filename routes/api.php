@@ -9,12 +9,15 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('sign-up', 'AuthController@signUp');
 });
 
-// Route::middleware('auth:siswa')->group(['prefix' => 'dashboard'], function () {
-//     Route::get('/', function ($id) {
-//         return response()->json('hai');
-//     });
-// });
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth:siswa'],function () {
+    Route::get('/', 'DashboardController@index');
+});
 
-Route::get('/hai', function ($id) {
-    return response()->json('hai');
-})->middleware('auth:siswa');
+Route::group(['prefix' => 'tugas', 'middleware' => 'auth:siswa'],function () {
+    Route::get('/', 'TugasController@index');
+});
+
+Route::group(['prefix' => 'uang-kas', 'middleware' => 'auth:siswa'],function () {
+    Route::get('/', 'UangKasController@index');
+    Route::post('/store', 'UangKasController@store_aktivitas_pengeluaran');
+});

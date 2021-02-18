@@ -3,13 +3,16 @@
 namespace App\Libraries;
 
 class Response {
-  public static function success($message = null, $status = 'success') {
+  public static function success($message = null, $status = 'success', $data = null) {
     $response['success'] = true;
     if ($message) {
         $response['message'] = $message;
     }
     if ($status) {
         $response['status'] = $status;
+    }
+    if ($data) {
+      $response['data'] = $data;
     }
     return response()->json($response);
   }

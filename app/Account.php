@@ -13,6 +13,9 @@ class Account extends Authenticatable implements JWTSubject
     protected $fillable = [
         'email', 'password', 'role_id'
     ];
+    protected $hidden = [
+        'password'
+    ];
 
     public function getJWTIdentifier()
     {
@@ -21,5 +24,13 @@ class Account extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+    public function informasi_user(){
+        return $this->hasOne(ProfileSiswa::class, 'account_id', 'id');
+    }
+    public function scopeInformasiUser($q, $id){
+        return $q->where('account.id', '=', $id)
+                ->join('profile_siswa', 'account.id', '=', 'profile_siswa.account_id')
+                ->select('account.*', 'profile_siswa.name');
     }
 }
